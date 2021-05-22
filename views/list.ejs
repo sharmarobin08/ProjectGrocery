@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Login</title>
+</head>
+
+<body background="img/background.jpg">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Groceries</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/list">My List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/reg">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log Out</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="box" id="heading">
+        <h1><%= name%></h1>
+    </div>
+    <div class="box">
+        <form action="/update" method="post" id="inc_dec" style="display: none;"></form>
+        <% for(let i=0;i<items.length;i++){ %>
+        <div class="item">
+            <p><%= items[i]%></p>
+            <div class="inc_dec">
+                <button type="submit" class="increase_quan" name="dec" value="<%=i%>" form="inc_dec">-</button>
+                <p><%= quantity[i] %> </p>
+                <button type="submit" class="decrease_quan" name="inc" value="<%=i%>" form="inc_dec">+</button>
+            </div>
+            <button type="submit" class="remove_list" name="itemNo" value="<%=i%>" form="add_remove">&#128473;</button>
+        </div>
+
+        <% } %>
+        <form class="item" action="/add_remove_item" method="post" id="add_remove">
+            <input type="text" name="newItem" placeholder="Enter New List" autocomplete="off" class="list_in">
+            <input type="text" name="quantity" placeholder="Quantity" autocomplete="off" class="list_in" value="1">
+            <button type="submit" class="add_list" name="function" value="add">+</button>
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
